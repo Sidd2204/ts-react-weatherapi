@@ -2,7 +2,7 @@ import { SunMedium } from "lucide-react";
 
 export default function DisplayForecast() {
   return (
-    <section className="shadow-gray-200 w-full border-1 border-gray-200 dark:text-white dark:bg-[#0d1322] dark:shadow-none dark:border-gray-800 hover:shadow-lg duration-200 rounded-2xl px-4 py-6">
+    <section className="shadow-gray-200 w-full border-1 border-gray-200 dark:text-white dark:bg-[#0d1322] dark:hover:shadow-none dark:border-gray-800 hover:shadow-lg duration-200 rounded-2xl px-4 py-6">
       <p className="mb-4 font-medium text-lg">5-Day Forecast</p>
       <div className="flex flex-wrap justify-between">
         {Array(5)
