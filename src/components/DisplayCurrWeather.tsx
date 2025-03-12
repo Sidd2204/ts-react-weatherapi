@@ -2,7 +2,7 @@ import { CloudLightning, Heart } from "lucide-react";
 
 export default function DisplayCurrWeather() {
   return (
-    <section className="bg-[#c0c4cb] dark:bg-[#1b2433] w-1/2 rounded-2xl px-4 py-6 my-10">
+    <section className="bg-[#c4d7fb] dark:bg-[#1b2433] w-full rounded-2xl px-4 py-6 my-10 hover:shadow-xl duration-200">
       <div className="flex items-center">
         <div className="grow">
           <p className="text-[22px] font-medium dark:text-white">New York</p>
@@ -25,23 +25,23 @@ export default function DisplayCurrWeather() {
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className="bg-[#dde0e5] dark:bg-[#101726] px-4 py-2 rounded-xl">
+        <div className="bg-[#cbe0fd] dark:bg-[#101726] px-4 py-2 rounded-xl">
           <p className="text-[14px] text-gray-500 dark:text-gray-400">
             Humidity
           </p>
           <p className="text-[16px] font-medium dark:text-white">75%</p>
         </div>
-        <div className="bg-[#dde0e5] dark:bg-[#101726] px-4 py-2 rounded-xl">
+        <div className="bg-[#cbe0fd] dark:bg-[#101726] px-4 py-2 rounded-xl">
           <p className="text-[14px] text-gray-500 dark:text-gray-400">Wind</p>
           <p className="text-[16px] font-medium dark:text-white">32 km/h</p>
         </div>
-        <div className="bg-[#dde0e5] dark:bg-[#101726] px-4 py-2 rounded-xl">
+        <div className="bg-[#cbe0fd] dark:bg-[#101726] px-4 py-2 rounded-xl">
           <p className="text-[14px] text-gray-500 dark:text-gray-400">
             Sunrise
           </p>
           <p className="text-[16px] font-medium dark:text-white">06:30 AM</p>
         </div>
-        <div className="bg-[#dde0e5] dark:bg-[#101726] px-4 py-2 rounded-xl">
+        <div className="bg-[#cbe0fd] dark:bg-[#101726] px-4 py-2 rounded-xl">
           <p className="text-[14px] text-gray-500 dark:text-gray-400">Sunset</p>
           <p className="text-[16px] font-medium dark:text-white">08:15 PM</p>
         </div>
