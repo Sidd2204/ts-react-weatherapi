@@ -56,14 +56,30 @@ export default function MainBody() {
   async function getWeatherData() {
     await axios
       .get(
-        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${city}&days=3&aqi=no&alerts=no`
+        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${city}&days=5&aqi=no&alerts=no`
       )
       .then((response) => {
         console.log(response.data);
         setResponseData(response.data);
       })
       .catch((error) => {
-        console.log(error, error.data);
+        const errorCode = error.response.data.error.code;
+        // const errorMessage = error.response.data.error.message;
+        if (errorCode == 1006) {
+          alert("Location not found, try entering City,State");
+        } else if (errorCode == 2006) {
+          alert("Key invalid!");
+        } else if (errorCode == 2007) {
+          alert("Services temporarily down, try again later :D");
+        } else if (errorCode == 2008) {
+          alert("Key disabled");
+        } else if (errorCode == 2009) {
+          alert("Request out of current access domain");
+        } else {
+          alert(
+            `Code: ${error.response.data.error.code},\nMessage: ${error.response.data.error.message}`
+          );
+        }
       });
   }
 
