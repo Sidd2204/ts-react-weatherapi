@@ -1,6 +1,28 @@
 import { SunMedium } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const [darkmode, setDarkMode] = useState<boolean>(() => {
+    if (typeof window !== undefined) {
+      return localStorage.getItem("theme") === "dark";
+    }
+    return false;
+  });
+
+  function toggleDarkMode() {
+    setDarkMode(!darkmode);
+  }
+
+  useEffect(() => {
+    if (darkmode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkmode]);
+
   return (
     <section className="w-full flex justify-around pt-4">
       <div className="flex gap-1 cursor-pointer">
@@ -18,7 +40,10 @@ export default function Navbar() {
         <div className="flex items-center  text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-200">
           Favourites
         </div>
-        <div className="border-gray-400 border-1 rounded-full p-1 px-2 hover:bg-gray-200 hover:border-gray-500 dark:text-white dark:border-gray-800 dark:hover:bg-[#1f2a3d] dark:hover:border-gray-800">
+        <div
+          className="border-gray-400 border-1 rounded-full p-1 px-2 hover:bg-gray-200 hover:border-gray-500 dark:text-white dark:border-gray-800 dark:hover:bg-[#1f2a3d] dark:hover:border-gray-800"
+          onClick={toggleDarkMode}
+        >
           <SunMedium className="w-4" />
         </div>
       </div>
