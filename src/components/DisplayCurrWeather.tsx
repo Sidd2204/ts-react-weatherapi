@@ -1,13 +1,31 @@
 import { Heart } from "lucide-react";
 import { WeatherResponse } from "./body";
+import { useEffect, useState } from "react";
 
 interface DisplayCurrWeatherProps {
-  responseData: WeatherResponse | null;
+  responseData: WeatherResponse;
+  updateFavorite: (currentCity: string) => void;
+  favorites: string[];
 }
 
 export default function DisplayCurrWeather({
   responseData,
+  updateFavorite,
+  favorites,
 }: DisplayCurrWeatherProps) {
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
+
+  useEffect(() => {
+    const city: string =
+      responseData.location.name + "," + responseData.location.region;
+
+    if (favorites.includes(city)) {
+      setIsFavorite(true);
+    } else {
+      setIsFavorite(false);
+    }
+  }, [favorites]);
+
   if (!responseData) {
     return <section>Loading...</section>;
   }
@@ -24,7 +42,17 @@ export default function DisplayCurrWeather({
               "United States"}
           </p>
         </div>
-        <Heart className="text-gray-500 dark:text-gray-400 cursor-pointer" />
+        <Heart
+          className={`dark:text-gray-400 cursor-pointer ${
+            isFavorite ? "fill-red-600 stroke-red-600" : "stroke-gray-500"
+          }`}
+          onClick={() => {
+            updateFavorite(
+              responseData.location.name + "," + responseData.location.region
+            );
+            // setIsFavorite(!isFavorite);
+          }}
+        />
       </div>
 
       <div className="flex my-6 items-center justify-center">

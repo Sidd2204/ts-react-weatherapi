@@ -3,7 +3,7 @@ import Navbar from "./components/navbar";
 
 function App() {
   return (
-    <div className="min-h-[150vh] dark:bg-[#080c16]">
+    <div className="min-h-[150vh] bg-[#f8fafe] dark:bg-[#080c16]">
       <Navbar />
       <MainBody />
     </div>
