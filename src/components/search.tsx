@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 interface SearchBarProps {
   city: string;
   setCity: React.Dispatch<React.SetStateAction<string>>;
-  getWeatherData: () => void;
+  getWeatherData: (e: EventTarget) => void;
 }
 
 export default function SearchBar({
@@ -24,8 +24,12 @@ export default function SearchBar({
         }}
       />
       <button
-        className="bg-[#3366ff] text-white rounded-4xl px-3 py-1 absolute right-[3%] top-[24%] hover:bg-[#3381ff] hover:scale-x-102 active:bg-[#3352ff] duration-150"
-        onClick={getWeatherData}
+        className="bg-[#3366ff] text-white rounded-4xl px-3 py-1 absolute right-[3%] top-[24%] hover:bg-[#3381ff] hover:scale-x-102 active:bg-[#3352ff] duration-150 disabled:bg-[#3366ff6c] disabled:text-gray-400 cursor-pointer"
+        onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) =>
+          getWeatherData(e.target)
+        }
+        id="citySearchButton"
+        disabled={city.length === 0}
       >
         Search
       </button>

@@ -52,13 +52,7 @@ type ForecastDay = {
 export default function MainBody() {
   const [city, setCity] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [favorites, setFavorites] = useState<string[]>([
-    "Thane",
-    "Kolhapur",
-    "aiusdhgjakldfnkjhsdoifuhoasudfhsjdlfkjbaslkjfb",
-    "asduhgwieuofgbsj",
-    "auidoghaISduhaoiuhfsdfnhkjlsafh",
-  ]);
+  const [favorites, setFavorites] = useState<string[]>([]);
   const [responseData, setResponseData] = useState<WeatherResponse | null>({
     location: {
       name: "Thane",
@@ -128,11 +122,30 @@ export default function MainBody() {
     },
   });
 
-  async function getWeatherData(): Promise<void> {
+  async function getWeatherData(e: EventTarget): Promise<void> {
+    let searchCity: string;
+
+    //set the city to be searched
+    if (e instanceof HTMLElement && !e.id) {
+      searchCity = e.innerText;
+      setCity(searchCity);
+    } else {
+      searchCity = city;
+    }
+
+    //check if the city is already on display
+    let responseCity: string | null = null;
+    if (responseData) {
+      responseCity =
+        responseData.location.name + "," + responseData.location.region;
+    }
+
+    if (searchCity === responseCity) return;
+
     setIsLoading(true);
     await axios
       .get<WeatherResponse>(
-        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${city}&days=5&aqi=no&alerts=no`
+        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${searchCity}&days=5&aqi=no&alerts=no`
       )
       .then((response: AxiosResponse<WeatherResponse>) => {
         console.log(response.data);
@@ -202,7 +215,7 @@ export default function MainBody() {
         getWeatherData={getWeatherData}
       />
 
-      <FavoritesBar favorites={favorites} />
+      <FavoritesBar getWeatherData={getWeatherData} favorites={favorites} />
 
       {responseData ? (
         <>
