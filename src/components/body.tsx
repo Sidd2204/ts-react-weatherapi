@@ -3,6 +3,7 @@ import DisplayCurrWeather from "./DisplayCurrWeather";
 import DisplayForecast from "./DisplayForecast";
 import SearchBar from "./search";
 import axios from "axios";
+import Loading from "./Loading";
 const weatherApiUrl = import.meta.env.VITE_WEATHER_API_URL;
 const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -49,11 +50,13 @@ type ForecastDay = {
 
 export default function MainBody() {
   const [city, setCity] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [responseData, setResponseData] = useState<WeatherResponse | null>(
     null
   );
 
-  async function getWeatherData() {
+  async function getWeatherData(): Promise<void> {
+    setIsLoading(true);
     await axios
       .get(
         `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${city}&days=5&aqi=no&alerts=no`
@@ -64,7 +67,6 @@ export default function MainBody() {
       })
       .catch((error) => {
         const errorCode = error.response.data.error.code;
-        // const errorMessage = error.response.data.error.message;
         if (errorCode == 1006) {
           alert("Location not found, try entering City,State");
         } else if (errorCode == 2006) {
@@ -80,12 +82,16 @@ export default function MainBody() {
             `Code: ${error.response.data.error.code},\nMessage: ${error.response.data.error.message}`
           );
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
+    setIsLoading(false);
   }
 
-  // if (!responseData) {
-  //   return <section className="dark:text-white">Loading...</section>;
-  // }
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col items-center w-[90%] lg:w-1/2 m-auto sm">
@@ -99,7 +105,9 @@ export default function MainBody() {
           <DisplayCurrWeather responseData={responseData} />
           <DisplayForecast responseData={responseData} />
         </>
-      ) : null}
+      ) : (
+        ""
+      )}
     </div>
   );
 }
