@@ -215,7 +215,11 @@ export default function MainBody() {
         getWeatherData={getWeatherData}
       />
 
-      <FavoritesBar getWeatherData={getWeatherData} favorites={favorites} />
+      <FavoritesBar
+        getWeatherData={getWeatherData}
+        favorites={favorites}
+        updateFavorite={updateFavorite}
+      />
 
       {responseData ? (
         <>
