@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import DisplayCurrWeather from "./DisplayCurrWeather";
-import DisplayForecast from "./DisplayForecast";
-import SearchBar from "./search";
+import DisplayCurrWeather from "../components/DisplayCurrWeather";
+import DisplayForecast from "../components/DisplayForecast";
+import SearchBar from "../components/search";
 import axios, { AxiosResponse } from "axios";
-import Loading from "./Loading";
-import FavoritesBar from "./FavoritesBar";
+import Loading from "../components/Loading";
+import FavoritesBar from "../components/FavoritesBar";
 const weatherApiUrl = import.meta.env.VITE_WEATHER_API_URL;
 const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -49,7 +49,7 @@ type ForecastDay = {
   astro: { sunrise: string; sunset: string };
 };
 
-export default function MainBody() {
+export default function Home() {
   const [city, setCity] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<string[]>([]);

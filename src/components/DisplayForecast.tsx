@@ -1,5 +1,5 @@
 // import { SunMedium } from "lucide-react";
-import { WeatherResponse } from "./body";
+import { WeatherResponse } from "../pages/Home";
 
 interface DisplayForecastProps {
   responseData: WeatherResponse;
@@ -24,7 +24,7 @@ export default function DisplayForecast({
           return (
             <div
               key={index}
-              className="mx-2 flex flex-col items-center dark:bg-[#0b1120] hover:scale-102 duration-200"
+              className="mx-2 px-6 py-2  rounded-lg flex flex-col items-center dark:bg-[#0a101e] hover:scale-102 duration-200"
             >
               <p className="text-[13px] font-medium">{day.date}</p>
               {/* <SunMedium className="items-center text-amber-400 h-8 w-max my-4" /> */}

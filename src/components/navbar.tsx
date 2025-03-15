@@ -1,5 +1,6 @@
 import { SunMedium } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [darkmode, setDarkMode] = useState<boolean>(() => {
@@ -8,6 +9,7 @@ export default function Navbar() {
     }
     return false;
   });
+  const navigate = useNavigate();
 
   function toggleDarkMode() {
     setDarkMode(!darkmode);
@@ -34,10 +36,20 @@ export default function Navbar() {
         </div>
       </div>
       <div className="flex gap-5 cursor-pointer">
-        <div className="flex items-center  text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-200">
+        <div
+          className="flex items-center  text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           Home
         </div>
-        <div className="flex items-center  text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-200">
+        <div
+          className="flex items-center  text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-gray-200"
+          onClick={() => {
+            navigate("/favorites");
+          }}
+        >
           Favourites
         </div>
         <div

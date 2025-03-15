@@ -1,5 +1,5 @@
 import { Heart } from "lucide-react";
-import { WeatherResponse } from "./body";
+import { WeatherResponse } from "../pages/Home";
 import { useEffect, useState } from "react";
 
 interface DisplayCurrWeatherProps {
