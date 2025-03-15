@@ -55,74 +55,9 @@ export default function Home() {
   const [city, setCity] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<string[]>([]);
-  const [responseData, setResponseData] = useState<WeatherResponse | null>({
-    location: {
-      name: "Thane",
-      region: "Maharashtra",
-      country: "India",
-      lat: 19.2,
-      lon: 72.9667,
-      tz_id: "Asia/Kolkata",
-      localtime_epoch: 1741883453,
-      localtime: "2025-03-13 22:00",
-    },
-    current: {
-      temp_c: 28.2,
-      condition: {
-        text: "Mist",
-        icon: "//cdn.weatherapi.com/weather/64x64/night/143.png",
-        code: 1030,
-      },
-      wind_kph: 7.6,
-      humidity: 79,
-    },
-    forecast: {
-      forecastday: [
-        {
-          date: "2025-03-13",
-          day: {
-            maxtemp_c: 36.2,
-            mintemp_c: 27.3,
-            avghumidity: 41,
-            condition: {
-              text: "Sunny",
-              icon: "//cdn.weatherapi.com/weather/64x64/day/113.png",
-              code: 1000,
-            },
-          },
-          astro: { sunrise: "06:48 AM", sunset: "06:47 PM" },
-        },
-        {
-          date: "2025-03-14",
-          day: {
-            maxtemp_c: 36.4,
-            mintemp_c: 26.6,
-            avghumidity: 33,
-            condition: {
-              text: "Sunny",
-              icon: "//cdn.weatherapi.com/weather/64x64/day/113.png",
-              code: 1000,
-            },
-          },
-          astro: { sunrise: "06:47 AM", sunset: "06:47 PM" },
-        },
-        {
-          date: "2025-03-15",
-          day: {
-            maxtemp_c: 35.3,
-            mintemp_c: 25.9,
-            avghumidity: 40,
-            condition: {
-              text: "Sunny",
-              icon: "//cdn.weatherapi.com/weather/64x64/day/113.png",
-              code: 1000,
-            },
-          },
-          astro: { sunrise: "06:46 AM", sunset: "06:48 PM" },
-        },
-      ],
-    },
-  });
+  const [responseData, setResponseData] = useState<WeatherResponse | null>(
+    null
+  );
 
   async function getWeatherData(searchCity: string): Promise<void> {
     //check if the city is already on display
