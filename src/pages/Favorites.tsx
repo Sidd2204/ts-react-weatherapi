@@ -1,8 +1,10 @@
 import { MapPin, Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const favs: null | string = localStorage.getItem("favorites");
@@ -22,7 +24,7 @@ export default function Favorites() {
         {favorites.map((city, index) => {
           return (
             <div
-              className="bg-white p-4 flex gap-2 flex-wrap items-center rounded-xl border-1 border-gray-200 dark:bg-[#0D1322] dark:border-gray-800 dark:text-white "
+              className="bg-white px-4 py-6 flex gap-2 flex-wrap items-center rounded-xl border-1 border-gray-200 dark:bg-[#0D1322] dark:border-gray-800 dark:text-white "
               key={index}
             >
               <MapPin className="text-blue-500 " />
@@ -30,10 +32,10 @@ export default function Favorites() {
               <p
                 className="text-gray-400 w-full text-sm pl-2 hover:text-blue-600 hover:underline cursor-pointer"
                 onClick={() => {
-                  console.log("city");
+                  navigate(`/${city}`);
                 }}
               >
-                View Weather Data
+                Click To View Weather Data
               </p>
             </div>
           );

@@ -10,7 +10,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route path={"/"} element={<Home />} />
+          <Route path={"/:cityparam?"} element={<Home />} />
           <Route path={"/favorites"} element={<Favorites />} />
         </Routes>
       </Router>

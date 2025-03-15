@@ -5,6 +5,7 @@ import SearchBar from "../components/search";
 import axios, { AxiosResponse } from "axios";
 import Loading from "../components/Loading";
 import FavoritesBar from "../components/FavoritesBar";
+import { useParams } from "react-router-dom";
 const weatherApiUrl = import.meta.env.VITE_WEATHER_API_URL;
 const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
@@ -50,6 +51,7 @@ type ForecastDay = {
 };
 
 export default function Home() {
+  const { cityparam } = useParams();
   const [city, setCity] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -122,17 +124,7 @@ export default function Home() {
     },
   });
 
-  async function getWeatherData(e: EventTarget): Promise<void> {
-    let searchCity: string;
-
-    //set the city to be searched
-    if (e instanceof HTMLElement && !e.id) {
-      searchCity = e.innerText;
-      setCity(searchCity);
-    } else {
-      searchCity = city;
-    }
-
+  async function getWeatherData(searchCity: string): Promise<void> {
     //check if the city is already on display
     let responseCity: string | null = null;
     if (responseData) {
@@ -148,7 +140,6 @@ export default function Home() {
         `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${searchCity}&days=5&aqi=no&alerts=no`
       )
       .then((response: AxiosResponse<WeatherResponse>) => {
-        console.log(response.data);
         setResponseData(response.data);
       })
       .catch((error) => {
@@ -193,6 +184,7 @@ export default function Home() {
     }
   }
 
+  //Fetch favorites
   useEffect(() => {
     const favs: string | null = localStorage.getItem("favorites");
     if (!favs) {
@@ -203,23 +195,22 @@ export default function Home() {
     setFavorites(JSON.parse(favs));
   }, []);
 
+  //Make API call if param exists
+  useEffect(() => {
+    if (!cityparam) return;
+    setCity(cityparam);
+    getWeatherData(cityparam);
+  }, [cityparam]);
+
   if (isLoading) {
     return <Loading />;
   }
 
   return (
     <div className="flex flex-col items-center w-[90%] lg:w-1/2 m-auto sm">
-      <SearchBar
-        city={city}
-        setCity={setCity}
-        getWeatherData={getWeatherData}
-      />
+      <SearchBar city={city} setCity={setCity} />
 
-      <FavoritesBar
-        getWeatherData={getWeatherData}
-        favorites={favorites}
-        updateFavorite={updateFavorite}
-      />
+      <FavoritesBar favorites={favorites} updateFavorite={updateFavorite} />
 
       {responseData ? (
         <>
