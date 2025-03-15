@@ -19,12 +19,12 @@ export default function DisplayForecast({
       <p className="mb-4 font-medium text-lg">
         {responseData.forecast.forecastday.length}-Day Forecast
       </p>
-      <div className="flex flex-wrap justify-evenly">
+      <div className="grid grid-cols-1 gap-4 w-[50%] m-auto sm:grid-cols-2 sm:w-full md:grid-cols-5 md:gap-3">
         {responseData.forecast.forecastday.map((day, index) => {
           return (
             <div
               key={index}
-              className="mx-2 px-6 py-2  rounded-lg flex flex-col items-center dark:bg-[#0a101e] hover:scale-102 duration-200"
+              className=" px-6 py-2  rounded-lg flex flex-col items-center dark:bg-[#0a101e] hover:scale-102 duration-200"
             >
               <p className="text-[13px] font-medium">{day.date}</p>
               {/* <SunMedium className="items-center text-amber-400 h-8 w-max my-4" /> */}

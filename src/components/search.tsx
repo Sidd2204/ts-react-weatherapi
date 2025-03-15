@@ -10,7 +10,7 @@ export default function SearchBar({ city, setCity }: SearchBarProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="relative mt-20 w-[70%]">
+    <div className="relative mt-20 w-full sm:w-[70%]">
       <Search className="absolute top-[31%] left-[3%] w-5 text-gray-400" />
       <input
         className="w-full shadow-lg rounded-4xl px-10 py-4 text-med shadow-gray-300 bg-white border-gray-200 border-1 outline-0 dark:bg-[#080c16] dark:shadow-none dark:text-white dark:border-gray-800 focus:border-blue-400 transition duration-300"

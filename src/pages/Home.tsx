@@ -207,7 +207,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col items-center w-[90%] lg:w-1/2 m-auto sm">
+    <div className="flex flex-col items-center w-[90%] lg:w-[768px] m-auto sm">
       <SearchBar city={city} setCity={setCity} />
 
       <FavoritesBar favorites={favorites} updateFavorite={updateFavorite} />
