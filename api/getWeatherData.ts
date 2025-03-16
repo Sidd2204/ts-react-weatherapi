@@ -50,6 +50,7 @@ export default async function getWeatherData(
   res: any
 ): Promise<void> {
   const { city } = req.query;
+  console.log("City: ", city);
 
   try {
     const weatherApiUrl = process.env.VITE_WEATHER_API_URL;
@@ -63,6 +64,7 @@ export default async function getWeatherData(
         res.status(200).json(response.data);
       })
       .catch((error) => {
+        console.log(error);
         if (error.response) {
           res
             .status(error.response.status)
