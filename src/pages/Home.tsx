@@ -6,8 +6,6 @@ import axios, { AxiosResponse } from "axios";
 import Loading from "../components/Loading";
 import FavoritesBar from "../components/FavoritesBar";
 import { useParams } from "react-router-dom";
-const weatherApiUrl = import.meta.env.VITE_WEATHER_API_URL;
-const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
 export interface WeatherResponse {
   location: {
@@ -71,9 +69,7 @@ export default function Home() {
 
     setIsLoading(true);
     await axios
-      .get<WeatherResponse>(
-        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${searchCity}&days=5&aqi=no&alerts=no`
-      )
+      .get<WeatherResponse>(`/api/getWeatherData&city=${searchCity}`)
       .then((response: AxiosResponse<WeatherResponse>) => {
         setResponseData(response.data);
       })
