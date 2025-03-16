@@ -11,9 +11,5 @@
       "src": "src/**/*",
       "use": "@vercel/static"
     }
-  ],
-  "env": {
-    "VITE_WEATHER_API_URL": "@VITE_WEATHER_API_URL",
-    "VITE_WEATHER_API_KEY": "@VITE_WEATHER_API_KEY"
-  }
+  ]
 }
