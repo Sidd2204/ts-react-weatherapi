@@ -69,7 +69,7 @@ export default function Home() {
 
     setIsLoading(true);
     await axios
-      .get<WeatherResponse>(`/api/getWeatherData&city=${searchCity}`)
+      .get<WeatherResponse>(`/api/getWeatherData?city=${searchCity}`)
       .then((response: AxiosResponse<WeatherResponse>) => {
         setResponseData(response.data);
       })
