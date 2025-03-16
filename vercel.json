@@ -15,5 +15,10 @@
   "env": {
     "VITE_WEATHER_API_URL": "@VITE_WEATHER_API_URL",
     "VITE_WEATHER_API_KEY": "@VITE_WEATHER_API_KEY"
+  },
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "vercel-node@20"
+    }
   }
 }
