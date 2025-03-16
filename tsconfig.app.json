@@ -20,7 +20,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Include Vite's environment types */
+    "types": ["vite/client", "node"]
   },
-  "include": ["src"]
+  "include": ["src", "api"]
 }
