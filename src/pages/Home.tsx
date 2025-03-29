@@ -72,7 +72,7 @@ export default function Home() {
     setIsLoading(true);
     await axios
       .get<WeatherResponse>(
-        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${searchCity}&days=5&aqi=no&alerts=no`
+        `${weatherApiUrl}/forecast.json?key=${weatherApiKey}&q=${searchCity}&days=3&aqi=no&alerts=no`
       )
       .then((response: AxiosResponse<WeatherResponse>) => {
         setResponseData(response.data);

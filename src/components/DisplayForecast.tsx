@@ -19,7 +19,7 @@ export default function DisplayForecast({
       <p className="mb-4 font-medium text-lg">
         {responseData.forecast.forecastday.length}-Day Forecast
       </p>
-      <div className="grid grid-cols-1 gap-4 w-[50%] m-auto sm:grid-cols-2 sm:w-full md:grid-cols-5 md:gap-3">
+      <div className="grid grid-cols-1 gap-4 w-[50%] m-auto sm:grid-cols-2 sm:w-full md:grid-cols-3 md:gap-3">
         {responseData.forecast.forecastday.map((day, index) => {
           return (
             <div
