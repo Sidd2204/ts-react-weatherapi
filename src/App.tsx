@@ -5,7 +5,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-[#f8fafe] dark:bg-[#080c16] pb-50">
+    <div className="bg-[#f8fafe] dark:bg-[#080c16] pb-50 min-h-[110vh]">
       <Router>
         <Navbar />
 
