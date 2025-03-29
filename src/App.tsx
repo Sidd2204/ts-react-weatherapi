@@ -5,7 +5,7 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="min-h-[150vh] bg-[#f8fafe] dark:bg-[#080c16]">
+    <div className="bg-[#f8fafe] dark:bg-[#080c16] pb-50">
       <Router>
         <Navbar />
 
@@ -13,6 +13,18 @@ function App() {
           <Route path={"/:cityparam?"} element={<Home />} />
           <Route path={"/favorites"} element={<Favorites />} />
         </Routes>
+
+        <a
+          href="https://www.weatherapi.com/"
+          title="Free Weather API"
+          className=""
+        >
+          <img
+            src="//cdn.weatherapi.com/v4/images/weatherapi_logo.png"
+            alt="Weather data by WeatherAPI.com"
+            className="fixed bottom-7 right-10 w-[80px] sm:w-[100px]"
+          />
+        </a>
       </Router>
     </div>
   );

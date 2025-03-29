@@ -24,7 +24,7 @@ export default function DisplayForecast({
           return (
             <div
               key={index}
-              className=" px-6 py-2  rounded-lg flex flex-col items-center dark:bg-[#0a101e] hover:scale-102 duration-200"
+              className=" px-6 py-2  rounded-lg flex flex-col items-center dark:bg-[#0a101e] hover:scale-102 duration-200 max-w-[160px] m-auto"
             >
               <p className="text-[13px] font-medium">{day.date}</p>
               {/* <SunMedium className="items-center text-amber-400 h-8 w-max my-4" /> */}
